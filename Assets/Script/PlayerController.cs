@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private int m_collectablesTotalCount, m_collectablesCounter;
 
     private Stopwatch m_stopwatch;
+    
+    [SerializeField] private GameObject text = null;
 
     // Start is called before the first frame update
     private void Start()
@@ -50,32 +54,37 @@ public class PlayerController : MonoBehaviour
            m_collectablesCounter--;
            if (m_collectablesCounter == 0)
            {
-               UnityEngine.Debug.Log("You win!");
+               text.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN!";
                Debug.Log($"It took you {m_stopwatch.Elapsed} to find all {m_collectablesTotalCount} collectables. ");
-#if UNITY_EDITOR
-               UnityEditor.EditorApplication.ExitPlaymode();
-#endif
+               Invoke("endGame", 1);
            }
            else
            {
-               Debug.Log($"'You've already found {m_collectablesTotalCount - m_collectablesCounter} of {m_collectablesTotalCount} collectables!");
+               text.GetComponent<UnityEngine.UI.Text>().text = 
+                   $"FOUND {m_collectablesTotalCount-m_collectablesCounter} OF {m_collectablesTotalCount}";
+               //Debug.Log($"'You've already found {m_collectablesTotalCount - m_collectablesCounter} of {m_collectablesTotalCount} collectables!");
            }
        }
        else if(other.gameObject.CompareTag("Enemy"))
        {
-           Debug.Log("GAME OVER. YOU GOT CAUGHT!");
-#if UNITY_EDITOR
-           UnityEditor.EditorApplication.ExitPlaymode();
-#endif
+           text.GetComponent<UnityEngine.UI.Text>().text = "GAME OVER. YOU GOT CAUGHT!";
+           Invoke("endGame", 1);
        }
        else if(other.gameObject.CompareTag("MovingObstacle"))
        {
-           Debug.Log("GAME OVER. YOU HIT AN OBSTACLE!");
-#if UNITY_EDITOR
-           UnityEditor.EditorApplication.ExitPlaymode();
-#endif
+           text.GetComponent<UnityEngine.UI.Text>().text = "GAME OVER. YOU HIT AN OBSTACLE!";
+           //Time.timeScale = 0;
+           Invoke("endGame", 1);
+
        }
        
+    }
+
+    private void endGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#endif
     }
    
 }
