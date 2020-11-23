@@ -10,8 +10,9 @@ public class MovingObstacleController : MonoBehaviour
 
     private int durationCounter = 0;
     [SerializeField] private int durationLimit = 100;
-
     [SerializeField] private bool moveRight = true;
+
+    private float edge = 10.0f;
 
     private void move()
     { 
@@ -32,6 +33,12 @@ public class MovingObstacleController : MonoBehaviour
             {
                 moveRight = true;
             }
+        }
+
+        if (gameObject.transform.position.x == edge || gameObject.transform.position.x == (edge * -1) )
+        {
+            Debug.Log("test");
+            moveRight = !moveRight;
         }
         
         
