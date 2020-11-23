@@ -61,14 +61,20 @@ public class PlayerController : MonoBehaviour
                Debug.Log($"'You've already found {m_collectablesTotalCount - m_collectablesCounter} of {m_collectablesTotalCount} collectables!");
            }
        }
-       else if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("MovingObstacle"))
+       else if(other.gameObject.CompareTag("Enemy"))
        {
-           Debug.Log("Caught");
+           Debug.Log("GAME OVER. YOU GOT CAUGHT!");
 #if UNITY_EDITOR
            UnityEditor.EditorApplication.ExitPlaymode();
 #endif
        }
-       
+       else if(other.gameObject.CompareTag("MovingObstacle"))
+       {
+           Debug.Log("GAME OVER. YOU HIT AN OBSTACLE!");
+#if UNITY_EDITOR
+           UnityEditor.EditorApplication.ExitPlaymode();
+#endif
+       }
        
     }
    

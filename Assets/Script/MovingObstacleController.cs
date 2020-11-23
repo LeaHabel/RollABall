@@ -13,6 +13,8 @@ public class MovingObstacleController : MonoBehaviour
     [SerializeField] private bool moveRight = true;
 
     private float edge = 10.0f;
+    
+    [SerializeField] private Material m_idleMaterial = null;
 
     private void move()
     { 
@@ -37,7 +39,7 @@ public class MovingObstacleController : MonoBehaviour
 
         if (gameObject.transform.position.x == edge || gameObject.transform.position.x == (edge * -1) )
         {
-            Debug.Log("test");
+           
             moveRight = !moveRight;
         }
         
@@ -45,43 +47,10 @@ public class MovingObstacleController : MonoBehaviour
 
     }
 
-    private void moveLeft()
-    {
-        
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
+   
     private void FixedUpdate()
     {
         move();
-        //transform.position = Vector3.MoveTowards(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(5.0f, 5.0f, 5.0f), 1.0f);
-        //Debug.Log("duration "+ duration);
         
-/*
-        if (Mathf.Sign(duration) == 1)
-        {
-            transform.Translate(Vector3.right * (Time.deltaTime * speed));
-            
-        }*/
-
-        /*if (duration < durationLimit & duration != 0) {
-            transform.Translate(Vector3.right * (Time.deltaTime * speed));
-            duration++;
-            
-        } else {
-            Debug.Log("here");
-            transform.Translate(Vector3.left * (Time.deltaTime * speed));
-            duration--;
-        }*/
-        
-        
-        //fly:
-        //transform.Translate(Vector3.up * Time.deltaTime, Space.World);
     }
 }
