@@ -19,8 +19,10 @@
         <option value="$PROJECT_DIR$/Assets/Script/PatrollingEnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/HelloWorld.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/MovingObstacleController.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/MovingObstacleController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/GameManager1.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -66,7 +68,9 @@
       <updated>1605960116625</updated>
       <workItem from="1605960130366" duration="2379000" />
       <workItem from="1606035851018" duration="3955000" />
-      <workItem from="1606136354863" duration="12664000" />
+      <workItem from="1606136354863" duration="13993000" />
+      <workItem from="1606158637812" duration="3435000" />
+      <workItem from="1606896562369" duration="2040000" />
     </task>
     <servers />
   </component>
