@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private GameObject text = null;
     public GameObject gameOverText;
+    public GameObject winText;
 
     // Start is called before the first frame update
     private void Start()
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
            if (m_collectablesCounter == 0)
            {
                text.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN!";
+               winText.SetActive(true);
                Debug.Log($"It took you {m_stopwatch.Elapsed} to find all {m_collectablesTotalCount} collectables. ");
                Invoke("endGame", 1);
            }
