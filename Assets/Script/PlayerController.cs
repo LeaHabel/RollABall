@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Stopwatch m_stopwatch;
     
     [SerializeField] private GameObject text = null;
+    public GameObject gameOverText;
 
     // Start is called before the first frame update
     private void Start()
@@ -61,19 +62,21 @@ public class PlayerController : MonoBehaviour
            else
            {
                text.GetComponent<UnityEngine.UI.Text>().text = 
-                   $"FOUND {m_collectablesTotalCount-m_collectablesCounter} OF {m_collectablesTotalCount}";
+                   $"SCORE: {m_collectablesTotalCount-m_collectablesCounter} / {m_collectablesTotalCount}";
                //Debug.Log($"'You've already found {m_collectablesTotalCount - m_collectablesCounter} of {m_collectablesTotalCount} collectables!");
            }
        }
        else if(other.gameObject.CompareTag("Enemy"))
        {
-           text.GetComponent<UnityEngine.UI.Text>().text = "GAME OVER. YOU GOT CAUGHT!";
+           text.GetComponent<UnityEngine.UI.Text>().text = "YOU GOT CAUGHT!";
+           gameOverText.SetActive(true);
            Invoke("endGame", 1);
        }
        else if(other.gameObject.CompareTag("MovingObstacle"))
        {
-           text.GetComponent<UnityEngine.UI.Text>().text = "GAME OVER. YOU HIT AN OBSTACLE!";
+           text.GetComponent<UnityEngine.UI.Text>().text = "YOU HIT AN OBSTACLE!";
            //Time.timeScale = 0;
+           gameOverText.SetActive(true);
            Invoke("endGame", 1);
 
        }
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void endGame()
     {
+        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.ExitPlaymode();
 #endif
