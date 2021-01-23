@@ -355,7 +355,7 @@ namespace extOSC
 				var firstValue = values[0];
 				var secondValue = values[1];
 
-				value = new Vector2((float)firstValue.FloatValue, (float)secondValue.FloatValue);
+				value = new Vector2((float)firstValue.DoubleValue, (float)secondValue.DoubleValue);
 
 				return true;
 			}

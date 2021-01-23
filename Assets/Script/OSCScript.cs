@@ -7,8 +7,10 @@ public class OSCScript : MonoBehaviour
 {
     public string Address = "/example/1";
 
-  
+
     public OSCReceiver Receiver;
+
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,11 @@ public class OSCScript : MonoBehaviour
     {
         Vector2 touch;
         
-        Debug.Log(message.ToVector2(out touch));
-        if (message.ToVector2(out touch) == true)
+        //Debug.Log(message.ToVector2Double(out touch));
+        if (message.ToVector2Double(out touch) == true)
         {
-            Debug.Log(touch);
+            playerController.OnMoveVector2(touch);
+            //Debug.Log(touch);
         }
         
         //Debug.LogFormat("Received: {0}", message);

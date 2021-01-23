@@ -41,6 +41,13 @@ public class PlayerController : MonoBehaviour
         m_movementY = movementVector.y;
     }
 
+    public void OnMoveVector2(Vector2 input)
+    {
+        m_movementX = input.x;
+        m_movementY = input.y*-1;
+    }
+    
+
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(m_movementX, 0f, m_movementY);
