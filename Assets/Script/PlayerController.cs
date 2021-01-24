@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float m_speed = 1f;
@@ -40,6 +39,13 @@ public class PlayerController : MonoBehaviour
         m_movementX = movementVector.x;
         m_movementY = movementVector.y;
     }
+
+    public void OnMoveVector2(Vector2 input)
+    {
+        m_movementX = input.x;
+        m_movementY = input.y*-1;
+    }
+    
 
     private void FixedUpdate()
     {
@@ -94,3 +100,5 @@ public class PlayerController : MonoBehaviour
     }
    
 }
+
+
