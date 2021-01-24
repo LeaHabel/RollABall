@@ -55,7 +55,6 @@ public class OSCScript : MonoBehaviour
                 Quaternion.Euler(
                          (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
                     ); // y and z axis are switched
-            Debug.Log((Mathf.Round(tmp.y) / 2));
         }
         if (message.ToVector2Double(out touch) == false)
         {
