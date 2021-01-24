@@ -9347,7 +9347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895b7efb929885e49a353c63d28b5743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerObject: {fileID: 0}
+  m_playerObject: {fileID: 1642494353}
   m_detectionRadius: 4
   m_idleMaterial: {fileID: 2100000, guid: 8e1ad6dfd9bb7f147bc170d0ac38f8b3, type: 2}
   m_chasingMaterial: {fileID: 2100000, guid: 36537d7da65593745b37d33da0aa2105, type: 2}
