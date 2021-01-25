@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using extOSC;
-
 public class OSCScript : MonoBehaviour
 {
     public string Address = "/example/1";
-
     public OSCReceiver Receiver;
-
     public PlayerController playerController;
-
     //public GameObject movingGround;
     [SerializeField] private Transform playerTransform;
-
     Quaternion rotation;
     Vector3 tmp, init;
     // Start is called before the first frame update
     void Start()
     {
         Receiver.Bind(Address, ReceivedMessage);
-
         void setInit(OSCMessage message)
         {
             if (message.ToQuaternion(out rotation))
@@ -28,11 +22,9 @@ public class OSCScript : MonoBehaviour
                 init = rotation.eulerAngles;
                 //Debug.Log("init " + init);
                 ReceivedMessage(message);
-
             }
         }
     }
-
     private void ReceivedMessage(OSCMessage message)
     {
         Vector2 touch;
@@ -42,7 +34,6 @@ public class OSCScript : MonoBehaviour
             playerController.OnMoveVector2(touch);
             Debug.Log(touch);
         }
-
         //Debug.Log(message.ToVector2Double(out touch));
         /*
         if (message.ToQuaternion(out rotation))
@@ -54,7 +45,6 @@ public class OSCScript : MonoBehaviour
                     ); // y and z axis are switched
             playerTransform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         }*/
-
         if (message.ToQuaternion(out rotation))
         {
             tmp = rotation.eulerAngles;
@@ -82,19 +72,12 @@ public class OSCScript : MonoBehaviour
                 //playerTransform.Translate(Vector3.right * (Time.deltaTime * 2.0f));
             }
 
-
         }
-
         
-
         //Debug.LogFormat("Received: {0}", message);
     }
-
     // Update is called once per frame
     void Update()
     {
-
     }
 }
-
-
