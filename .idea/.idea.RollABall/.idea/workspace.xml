@@ -23,6 +23,7 @@
         <option value="$PROJECT_DIR$/Assets/Script/GameManager1.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/OSCScript.cs" />
       </list>
     </option>
   </component>
@@ -76,6 +77,7 @@
       <workItem from="1607343009873" duration="4032000" />
       <workItem from="1607511601944" duration="1644000" />
       <workItem from="1607525092526" duration="1329000" />
+      <workItem from="1611521201573" duration="1569000" />
     </task>
     <servers />
   </component>

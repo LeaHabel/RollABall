@@ -12,6 +12,7 @@ public class OSCScript : MonoBehaviour
     public PlayerController playerController;
 
     public GameObject movingGround;
+    [SerializeField] private Transform playerTransform;
 
     Quaternion rotation;
     Vector3 tmp, init;
@@ -37,7 +38,7 @@ public class OSCScript : MonoBehaviour
         Vector2 touch;
 
 
-        Debug.Log(message.ToVector2Double(out touch));
+        //Debug.Log(message.ToVector2Double(out touch));
 
         if (message.ToQuaternion(out rotation))
         {
@@ -53,6 +54,7 @@ public class OSCScript : MonoBehaviour
                 Quaternion.Euler(
                          (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
                     ); // y and z axis are switched
+            playerTransform.eulerAngles  = new Vector3(0.0f, 0.0f, 0.0f);
         }
         if (message.ToVector2Double(out touch) == false)
         {
