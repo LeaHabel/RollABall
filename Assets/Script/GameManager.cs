@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public void EnterLevel()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("level1");
     }
 /*
     public void ReloadLevel()

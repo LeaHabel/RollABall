@@ -6,6 +6,7 @@ using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -99,9 +100,7 @@ public class PlayerController : MonoBehaviour
     private void endGame()
     {
         
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.ExitPlaymode();
-#endif
+        SceneManager.LoadScene("Menu");
     }
    
 }
