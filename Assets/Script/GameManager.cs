@@ -24,4 +24,14 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.ExitPlaymode();
 #endif
     }
+    
+    public void EnterSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+    
+    public void ExitSettings()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
