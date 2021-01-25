@@ -12,6 +12,7 @@ public class OSCScript : MonoBehaviour
     public PlayerController playerController;
 
     public GameObject movingGround;
+    public Rigidbody movingGroundRigidbody;
     [SerializeField] private Transform playerTransform;
 
     Quaternion rotation;
@@ -40,26 +41,29 @@ public class OSCScript : MonoBehaviour
 
         //Debug.Log(message.ToVector2Double(out touch));
 
-        if (message.ToQuaternion(out rotation))
-        {
-            tmp = rotation.eulerAngles;
-            //var result = Mathf.Lerp(0, 360, Mathf.InverseLerp(0, 360, tmp.x));
+        //if (message.ToQuaternion(out rotation))
+        //{
+        //tmp = rotation.eulerAngles;
+        //var result = Mathf.Lerp(0, 360, Mathf.InverseLerp(0, 360, tmp.x));
 
-            /*int anotherTmpX = (int)tmp.x / 10;
-            tmp.x = anotherTmpX * 10;
-            int anotherTmpY = (int)tmp.y / 10;
-            tmp.y = anotherTmpY * 10;*/
+        /*int anotherTmpX = (int)tmp.x / 10;
+        tmp.x = anotherTmpX * 10;
+        int anotherTmpY = (int)tmp.y / 10;
+        tmp.y = anotherTmpY * 10;*/
+        /*movingGroundRigidbody.MoveRotation(Quaternion.Euler(
+            (Mathf.Round(-tmp.x)), 0, (Mathf.Round(tmp.y))));*/
+        /*movingGround.transform.rotation =
+            Quaternion.Euler(
+                     (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
+                ); // y and z axis are switched*/
+        //playerTransform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        //movingGroundRigidbody.GetComponent<Rigidbody>().AddForce(1000.0f, 1000.0f, 1000.0f);
 
-            movingGround.transform.rotation =
-                Quaternion.Euler(
-                         (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
-                    ); // y and z axis are switched
-            playerTransform.eulerAngles  = new Vector3(0.0f, 0.0f, 0.0f);
-        }
-        if (message.ToVector2Double(out touch) == false)
+        //}
+        if (message.ToVector2Double(out touch) == true)
         {
             playerController.OnMoveVector2(touch);
-            //Debug.Log(touch);
+            Debug.Log(touch);
         }
 
         //Debug.LogFormat("Received: {0}", message);
