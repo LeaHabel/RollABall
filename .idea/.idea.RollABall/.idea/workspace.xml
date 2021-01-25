@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a7c8399-1cb0-44d9-9255-bff657b63477" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RollABall/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RollABall/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="5a7c8399-1cb0-44d9-9255-bff657b63477" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +9,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../../../Program Files/Unity/Hub/Editor/2019.4.13f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -22,9 +21,9 @@
         <option value="$PROJECT_DIR$/Assets/Script/HelloWorld.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/MovingObstacleController.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/GameManager1.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/OSCScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/OSCScript.cs" />
       </list>
     </option>
   </component>
@@ -79,9 +78,7 @@
       <workItem from="1607511601944" duration="1644000" />
       <workItem from="1607525092526" duration="1329000" />
       <workItem from="1611521201573" duration="1569000" />
-      <workItem from="1611584844398" duration="766000" />
-      <workItem from="1611586865941" duration="19000" />
-      <workItem from="1611586895809" duration="4258000" />
+      <workItem from="1611579131401" duration="2567000" />
     </task>
     <servers />
   </component>
