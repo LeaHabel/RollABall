@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float m_speed = 1f;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject text = null;
     public GameObject gameOverText;
     public GameObject winText;
-
+    
     
 
     // Start is called before the first frame update
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
         m_playerRigidbody = GetComponent<Rigidbody>();
         m_collectablesTotalCount = m_collectablesCounter = GameObject.FindGameObjectsWithTag("Collectable").Length;
         m_stopwatch = Stopwatch.StartNew(); //equal to: m_stopwatch = new Stopwatch; Stopwatch.start();
+        
+        
     }
 
     private void OnMove(InputValue inputValue)
@@ -61,17 +64,27 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    { 
+        Scene currentScene = SceneManager.GetActiveScene (); 
+        string sceneName = currentScene.name;
        if(other.gameObject.CompareTag("Collectable"))
        {
            other.gameObject.SetActive(false);
            m_collectablesCounter--;
            if (m_collectablesCounter == 0)
            {
-               text.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN!";
-               winText.SetActive(true);
-               Debug.Log($"It took you {m_stopwatch.Elapsed} to find all {m_collectablesTotalCount} collectables. ");
-               Invoke("endGame", 1);
+               if (sceneName == "level1")
+               {
+                   SceneManager.LoadScene("level2");
+               }
+               else
+               {
+                   text.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN!";
+                   winText.SetActive(true);
+                   //Debug.Log($"It took you {m_stopwatch.Elapsed} to find all {m_collectablesTotalCount} collectables. ");
+                   Invoke("endGame", 1);
+               }
+               
            }
            else
            {
