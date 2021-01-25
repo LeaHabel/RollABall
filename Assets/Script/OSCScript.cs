@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using extOSC;
-
 public class OSCScript : MonoBehaviour
 {
     public string Address = "/example/1";
-
     public OSCReceiver Receiver;
-
     public PlayerController playerController;
-
-    public GameObject movingGround;
-    public Rigidbody movingGroundRigidbody;
+    //public GameObject movingGround;
     [SerializeField] private Transform playerTransform;
-
     Quaternion rotation;
     Vector3 tmp, init;
     // Start is called before the first frame update
     void Start()
     {
-        Receiver.Bind(Address, setInit);
-
+        Receiver.Bind(Address, ReceivedMessage);
         void setInit(OSCMessage message)
         {
             if (message.ToQuaternion(out rotation))
@@ -29,51 +22,62 @@ public class OSCScript : MonoBehaviour
                 init = rotation.eulerAngles;
                 //Debug.Log("init " + init);
                 ReceivedMessage(message);
-
             }
         }
     }
-
     private void ReceivedMessage(OSCMessage message)
     {
         Vector2 touch;
-
-
-        //Debug.Log(message.ToVector2Double(out touch));
-
-        //if (message.ToQuaternion(out rotation))
-        //{
-        //tmp = rotation.eulerAngles;
-        //var result = Mathf.Lerp(0, 360, Mathf.InverseLerp(0, 360, tmp.x));
-
-        /*int anotherTmpX = (int)tmp.x / 10;
-        tmp.x = anotherTmpX * 10;
-        int anotherTmpY = (int)tmp.y / 10;
-        tmp.y = anotherTmpY * 10;*/
-        /*movingGroundRigidbody.MoveRotation(Quaternion.Euler(
-            (Mathf.Round(-tmp.x)), 0, (Mathf.Round(tmp.y))));*/
-        /*movingGround.transform.rotation =
-            Quaternion.Euler(
-                     (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
-                ); // y and z axis are switched*/
-        //playerTransform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        //movingGroundRigidbody.GetComponent<Rigidbody>().AddForce(1000.0f, 1000.0f, 1000.0f);
-
-        //}
+        
         if (message.ToVector2Double(out touch) == true)
         {
             playerController.OnMoveVector2(touch);
             Debug.Log(touch);
         }
+        //Debug.Log(message.ToVector2Double(out touch));
+        /*
+        if (message.ToQuaternion(out rotation))
+        {
+            tmp = rotation.eulerAngles;
+            movingGround.transform.rotation =
+                Quaternion.Euler(
+                         (Mathf.Round(tmp.x)), 0, (Mathf.Round(tmp.y))
+                    ); // y and z axis are switched
+            playerTransform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        }*/
+        if (message.ToQuaternion(out rotation))
+        {
+            tmp = rotation.eulerAngles;
+            Debug.Log(tmp);
+            if (tmp.x > 10 && tmp.x < 170) //right
+            {
+               //playerTransform.position = playerTransform.position + new Vector3((tmp.x / 500), 0f, 0f);
+                playerTransform.Translate(Vector3.right/10);
+            }
+            if (tmp.x < 370 && tmp.x > 290) //left
+            {
+               //playerTransform.position = playerTransform.position - new Vector3(tmp.x / 8000, 0f, 0f);
+               playerTransform.Translate(Vector3.left/10);
+            }
+            
+            if (tmp.y < 370 && tmp.x > 290) //forward
+            {
+                //playerTransform.Translate(Vector3.back/10);
+                playerTransform.position = playerTransform.position + new Vector3(0f, 0f, 0.1f);
+            }
+            if (tmp.y > 10 && tmp.x < 170) //backwards
+            {
+                //playerTransform.Translate(Vector3.forward/10);
+                playerTransform.position = playerTransform.position - new Vector3(0f, 0f, 0.1f);
+                //playerTransform.Translate(Vector3.right * (Time.deltaTime * 2.0f));
+            }
 
+        }
+        
         //Debug.LogFormat("Received: {0}", message);
     }
-
     // Update is called once per frame
     void Update()
     {
-
     }
 }
-
-
