@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
 
+    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -52,6 +54,9 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(m_movementX, 0f, m_movementY);
 
         m_playerRigidbody.AddForce(movement * m_speed);
+        //playerTransform.eulerAngles  = new Vector3(0.0f, 0.0f, 0.0f);
+
+        //GameObject.Transform.rotation = Vector3(0.0f,0.0f,0.0f);
     }
 
     private void OnTriggerEnter(Collider other)
