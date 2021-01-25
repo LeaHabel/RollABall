@@ -29,8 +29,11 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
     public GameObject[] respawns;
-    public float timeLeft = 3.0f;
+    //public float timeLeft = 3.0f;
     private bool countdownRunning = false;
+    
+    private float endTime; 
+    Text counter;
 
 
     // Start is called before the first frame update
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour
         m_stopwatch = Stopwatch.StartNew(); //equal to: m_stopwatch = new Stopwatch; Stopwatch.start();
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
         
+        endTime = Time.time + 10;
+        counter = GameObject.Find("Timer").GetComponent<Text>();
+        counter.text = "60";
     }
 
     private void OnMove(InputValue inputValue)
@@ -61,6 +67,18 @@ public class PlayerController : MonoBehaviour
     {
         while (countdownRunning == true)
         {
+            int timeLeft = (int)(endTime - Time.time);
+            if (timeLeft < 0) timeLeft = 0;
+            counter.text = timeLeft.ToString();
+            if (timeLeft < 0)
+            {
+                countdownRunning = false;
+            }
+        }
+        
+        
+        /*while (countdownRunning == true)
+        {
             timeLeft -= Time.deltaTime;
             int seconds = Convert.ToInt32( timeLeft % 60);
             Debug.Log("Time Left:" + seconds);
@@ -69,7 +87,7 @@ public class PlayerController : MonoBehaviour
             {
                 countdownRunning = false;
             }
-        }
+        }*/
     }
 
     private void FixedUpdate()
@@ -122,7 +140,7 @@ public class PlayerController : MonoBehaviour
             }
             countdownRunning = true;
             Invoke("setFalse", 10);
-            timeText.SetActive(true);
+            //timeText.SetActive(true);
             countdown.SetActive(true);
             countdown.GetComponent<Text>().text = $"Invincibility Countdown";
         }
@@ -150,7 +168,7 @@ public class PlayerController : MonoBehaviour
         }
         //Debug.Log("Hi");
         countdown.SetActive(false);
-        timeText.SetActive(false);
+        //timeText.SetActive(false);
     }
     private void endGame()
     {
