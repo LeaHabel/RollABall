@@ -71,13 +71,14 @@ public class PlayerController : MonoBehaviour
        {
            other.gameObject.SetActive(false);
            m_collectablesCounter--;
+           Debug.Log(m_collectablesCounter);
            if (m_collectablesCounter == 0)
            {
                if (sceneName == "level1")
                {
                    SceneManager.LoadScene("level2");
                }
-               else
+               if (sceneName == "level2")
                {
                    text.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN!";
                    winText.SetActive(true);
