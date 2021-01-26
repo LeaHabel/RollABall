@@ -29,11 +29,8 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
     public GameObject[] respawns;
-    //public float timeLeft = 3.0f;
-    private bool countdownRunning = false;
-    
     private float endTime; 
-    Text counter;
+    
 
 
     // Start is called before the first frame update
@@ -43,10 +40,6 @@ public class PlayerController : MonoBehaviour
         m_collectablesTotalCount = m_collectablesCounter = GameObject.FindGameObjectsWithTag("Collectable").Length;
         m_stopwatch = Stopwatch.StartNew(); //equal to: m_stopwatch = new Stopwatch; Stopwatch.start();
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
-        
-        endTime = Time.time + 10;
-        counter = GameObject.Find("Timer").GetComponent<Text>();
-        counter.text = "60";
     }
 
     private void OnMove(InputValue inputValue)
@@ -65,29 +58,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        while (countdownRunning == true)
-        {
-            int timeLeft = (int)(endTime - Time.time);
-            if (timeLeft < 0) timeLeft = 0;
-            counter.text = timeLeft.ToString();
-            if (timeLeft < 0)
-            {
-                countdownRunning = false;
-            }
-        }
-        
-        
-        /*while (countdownRunning == true)
-        {
-            timeLeft -= Time.deltaTime;
-            int seconds = Convert.ToInt32( timeLeft % 60);
-            Debug.Log("Time Left:" + seconds);
-            timeText.GetComponent<Text>().text = $"{seconds}";
-            if (timeLeft < 0)
-            {
-                countdownRunning = false;
-            }
-        }*/
+        int timeLeft = (int)(endTime - Time.time);
+        if (timeLeft <= 0) timeText.SetActive(false);
+        timeText.GetComponent<Text>().text = timeLeft.ToString();
     }
 
     private void FixedUpdate()
@@ -109,7 +82,6 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             m_collectablesCounter--;
-            //Debug.Log(m_collectablesCounter);
             if (m_collectablesCounter == 0)
             {
                 if (sceneName == "level1")
@@ -138,11 +110,13 @@ public class PlayerController : MonoBehaviour
             {
                 respawn.SetActive(false);
             }
-            countdownRunning = true;
             Invoke("setFalse", 10);
-            //timeText.SetActive(true);
             countdown.SetActive(true);
             countdown.GetComponent<Text>().text = $"Invincibility Countdown";
+            timeText.SetActive(true);
+            endTime = Time.time + 11;
+            
+            
         }
         else if(other.gameObject.CompareTag("Enemy"))
         {
@@ -153,7 +127,6 @@ public class PlayerController : MonoBehaviour
         else if(other.gameObject.CompareTag("MovingObstacle"))
         {
             text.GetComponent<UnityEngine.UI.Text>().text = "YOU HIT AN OBSTACLE!";
-            //Time.timeScale = 0;
             gameOverText.SetActive(true);
             Invoke("endGame", 2);
         }
@@ -166,9 +139,8 @@ public class PlayerController : MonoBehaviour
         {
             respawn.SetActive(true);
         }
-        //Debug.Log("Hi");
         countdown.SetActive(false);
-        //timeText.SetActive(false);
+        timeText.SetActive(false);
     }
     private void endGame()
     {
